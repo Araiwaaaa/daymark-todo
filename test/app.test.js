@@ -89,3 +89,54 @@ test('blank task titles are rejected without changing the task list', async () =
   assert.equal(response.body.error, 'Task must be between 1 and 200 characters.');
   assert.deepEqual((await bob.get('/api/tasks')).body.tasks, []);
 });
+
+test('libSQL backend supports registration, sessions, and task persistence', async () => {
+  const previousUrl = process.env.TURSO_DATABASE_URL;
+  const previousToken = process.env.TURSO_AUTH_TOKEN;
+  const databasePath = path.join(directory, 'libsql.sqlite');
+  let libsqlDatabase;
+
+  try {
+    process.env.TURSO_DATABASE_URL = `file:${databasePath}`;
+    process.env.TURSO_AUTH_TOKEN = 'local-test-token';
+    libsqlDatabase = createDatabase();
+    const libsqlApp = createApp({ database: libsqlDatabase, sessionSecret: 'libsql-test-secret' }).app;
+    const account = request.agent(libsqlApp);
+
+    const registered = await account.post('/api/register').send({ username: 'libuser', password: 'correct-horse-4' });
+    assert.equal(registered.status, 201);
+    assert.equal((await account.post('/api/tasks').send({ title: 'Persist remotely' })).status, 201);
+
+    const signedIn = request.agent(libsqlApp);
+    assert.equal((await signedIn.post('/api/login').send({ username: 'libuser', password: 'correct-horse-4' })).status, 200);
+    const tasks = await signedIn.get('/api/tasks');
+    assert.equal(tasks.status, 200);
+    assert.equal(tasks.body.tasks[0].title, 'Persist remotely');
+  } finally {
+    await libsqlDatabase?.close();
+    if (previousUrl === undefined) delete process.env.TURSO_DATABASE_URL;
+    else process.env.TURSO_DATABASE_URL = previousUrl;
+    if (previousToken === undefined) delete process.env.TURSO_AUTH_TOKEN;
+    else process.env.TURSO_AUTH_TOKEN = previousToken;
+  }
+});
+
+test('Vercel refuses to start without persistent Turso configuration', () => {
+  const previousVercel = process.env.VERCEL;
+  const previousUrl = process.env.TURSO_DATABASE_URL;
+  const previousToken = process.env.TURSO_AUTH_TOKEN;
+  process.env.VERCEL = '1';
+  delete process.env.TURSO_DATABASE_URL;
+  delete process.env.TURSO_AUTH_TOKEN;
+
+  try {
+    assert.throws(() => createDatabase(), /Set TURSO_DATABASE_URL and TURSO_AUTH_TOKEN/);
+  } finally {
+    if (previousVercel === undefined) delete process.env.VERCEL;
+    else process.env.VERCEL = previousVercel;
+    if (previousUrl === undefined) delete process.env.TURSO_DATABASE_URL;
+    else process.env.TURSO_DATABASE_URL = previousUrl;
+    if (previousToken === undefined) delete process.env.TURSO_AUTH_TOKEN;
+    else process.env.TURSO_AUTH_TOKEN = previousToken;
+  }
+});

@@ -10,6 +10,10 @@ Requires Node.js 20 or newer. Install dependencies with `npm install`, copy `.en
 
 Run `npm test`. The tests use temporary SQLite databases and cover registration validation, successful and failed login, authenticated task creation/completion/deletion, and cross-account isolation.
 
+## Deploy to Vercel
+
+Vercel Functions cannot keep a local SQLite file reliably. Create a Turso database and auth token, then add `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, and a long random `SESSION_SECRET` to the Vercel project environment variables for Production (and Preview if needed). Push or redeploy after setting them. The app creates its tables on first request. Without Turso variables, the Vercel function returns a configuration error rather than attempting to write to its read-only deployment filesystem.
+
 ## Security notes
 
 Passwords are hashed with bcrypt. Session records and application data are stored in SQLite, and the session cookie is HTTP-only and same-site. Set a long random `SESSION_SECRET` and serve behind HTTPS in production; production mode enables secure cookies. Usernames are case-insensitive and limited to letters, numbers, and underscores.
