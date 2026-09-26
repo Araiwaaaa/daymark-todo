@@ -1,0 +1,25 @@
+{
+  "name": "daymark-todo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A private, SQLite-backed to-do app",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "better-sqlite3": "^12.2.0"
+  },
+  "devDependencies": {
+    "supertest": "^7.1.4"
+  }
+}
