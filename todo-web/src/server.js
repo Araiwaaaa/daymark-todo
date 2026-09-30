@@ -49,10 +49,12 @@ function createApp(options = {}) {
   return app;
 }
 
+const app = createApp();
+
 if (require.main === module) {
-  const app = createApp();
   const port = Number(process.env.PORT) || 3000;
   app.listen(port, () => console.log(`Todo app running at http://localhost:${port}`));
 }
 
-module.exports = { createApp };
+module.exports = app;
+module.exports.createApp = createApp;
