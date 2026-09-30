@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f3f0e8">
+    <meta name="description" content="กาแฟดี ๆ และขนมอบสดใหม่จากบ้านมะลิคาเฟ่ สั่งล่วงหน้าแล้วแวะมารับได้เลย">
+    <title>บ้านมะลิ คาเฟ่ | กาแฟแก้วโปรดของคุณ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/src/store.js" defer></script>
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="บ้านมะลิ คาเฟ่ หน้าแรก">
+          <span class="brand-symbol" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="brand-copy"><strong>บ้านมะลิ</strong><small>COFFEE & BAKERY</small></span>
+        </a>
+        <nav class="top-links" aria-label="เมนูหลัก"><a class="top-link active" href="#menu">เมนูของเรา</a><a class="top-link" href="#visit">แวะมาหาเรา</a></nav>
+        <button class="cart-shortcut" id="cart-shortcut" type="button" aria-label="ไปที่ตะกร้า"><span class="bag-icon" aria-hidden="true">▱</span><span class="cart-shortcut-label">ตะกร้าของคุณ</span><span class="cart-count" id="header-count">0</span></button>
+      </header>
+
+      <main id="top">
+        <section class="intro-band" aria-labelledby="page-title">
+          <div class="intro-copy">
+            <div class="open-status"><span class="status-dot"></span> เปิดทุกวัน 08:00–18:00</div>
+            <h1 id="page-title">กาแฟแก้วโปรด<br><em>อยู่ใกล้แค่เอื้อม</em></h1>
+            <p class="intro-description">คั่วสด ชงด้วยใจ แล้วอบขนมอุ่น ๆ รอคุณอยู่<br class="desktop-break"> สั่งไว้ก่อน เดี๋ยวเราเตรียมให้พร้อมรับ</p>
+            <a class="menu-jump" href="#menu">เลือกเมนู <span aria-hidden="true">↓</span></a>
+            <div class="intro-note"><span class="note-rule"></span> SLOW MORNINGS, GOOD COFFEE</div>
+          </div>
+          <div class="intro-image-wrap"><img class="intro-image" src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1200&q=85" alt="บาริสต้ากำลังเตรียมกาแฟในคาเฟ่" fetchpriority="high"><div class="image-label"><span class="label-sun" aria-hidden="true">✳</span><span>แวะพักสักแก้ว<br><small>YOUR DAILY LITTLE PAUSE</small></span></div></div>
+          <div class="intro-index" aria-hidden="true">01 / 04</div>
+        </section>
+
+        <section class="order-layout" id="menu" aria-labelledby="menu-title">
+          <div class="menu-column">
+            <div class="section-heading"><div><p class="eyebrow">MADE FRESH, JUST FOR YOU</p><h2 id="menu-title">เมนูวันนี้</h2></div><p class="menu-hint">เลือกสิ่งที่ชอบ<br>แล้วเราจะชงให้สดใหม่</p></div>
+            <div class="menu-tools"><div class="category-list" id="category-list" role="group" aria-label="กรองหมวดหมู่เมนู"></div><label class="search-box"><span aria-hidden="true">⌕</span><input type="search" id="menu-search" placeholder="ค้นหาเมนู" aria-label="ค้นหาเมนู"></label></div>
+            <div class="menu-grid" id="menu-grid" aria-live="polite"></div>
+            <div class="menu-empty" id="menu-empty" hidden><span aria-hidden="true">⌕</span><p>ยังไม่เจอเมนูที่ค้นหา</p><small>ลองเปลี่ยนคำค้นหรือเลือกหมวดอื่นดูนะ</small></div>
+          </div>
+          <aside class="order-panel" id="order-panel" aria-labelledby="order-title">
+            <div class="order-panel-head"><div><p class="eyebrow">MADE WITH CARE</p><h2 id="order-title">ออเดอร์ของคุณ</h2></div><span class="order-bloom" aria-hidden="true">✳</span></div>
+            <div class="pickup-note"><span class="pickup-icon" aria-hidden="true">◷</span><span><strong>รับที่ร้าน</strong><small>พร้อมประมาณ 15–20 นาที</small></span><span class="pickup-chevron" aria-hidden="true">⌄</span></div>
+            <div class="cart-items" id="cart-items" aria-live="polite"></div>
+            <div class="cart-empty" id="cart-empty"><span class="empty-cup" aria-hidden="true">○</span><strong>ตะกร้ายังว่างอยู่</strong><span>เลือกเมนูที่ใช่ แล้วเริ่มวันดี ๆ กัน</span></div>
+            <div class="cart-summary" id="cart-summary" hidden><div class="summary-line"><span>รวมค่าเมนู</span><span id="subtotal">฿0</span></div><div class="summary-line service-line"><span>ค่าบริการ</span><span>ฟรี</span></div><div class="summary-total"><strong>ยอดรวม</strong><strong id="total">฿0</strong></div><button class="checkout-button" id="checkout-button" type="button" disabled>ยืนยันรายการ <span aria-hidden="true">↗</span></button><p class="checkout-caption">ชำระเงินที่ร้านตอนรับเครื่องดื่ม</p></div>
+            <div class="panel-footer"><span class="footer-flower" aria-hidden="true">✳</span><span>ทุกแก้วชงสด หลังจากคุณสั่ง</span></div>
+          </aside>
+        </section>
+
+        <section class="visit-band" id="visit" aria-labelledby="visit-title"><div class="visit-mark" aria-hidden="true">B/M</div><div><p class="eyebrow">A SMALL PLACE TO FEEL AT HOME</p><h2 id="visit-title">พักจากความวุ่นวาย<br><em>แล้วเจอกันที่บ้านมะลิ</em></h2></div><div class="visit-details"><span>จันทร์ – อาทิตย์ · 08:00–18:00</span><span>ซอยสวนมะลิ กรุงเทพฯ</span><a href="https://maps.google.com/?q=cafe+Suan+Mali+Bangkok" target="_blank" rel="noreferrer">ดูแผนที่ <span aria-hidden="true">↗</span></a></div></section>
+      </main>
+
+      <footer class="footer"><a class="footer-brand" href="#top">บ้านมะลิ <span>COFFEE & BAKERY</span></a><span>ค่อย ๆ ใช้วันดี ๆ ไปด้วยกัน</span><span>© 2026 BAAN MALAKI CAFE</span></footer>
+    </div>
+
+    <dialog class="checkout-dialog" id="checkout-dialog" aria-labelledby="checkout-title"><form class="checkout-form" id="checkout-form"><button class="dialog-close" id="dialog-close" type="button" aria-label="ปิดหน้าต่าง">×</button><p class="eyebrow">ALMOST YOURS</p><h2 id="checkout-title">รับออเดอร์ที่ร้าน</h2><p class="dialog-copy">บอกชื่อที่ใช้เรียกตอนมารับ แล้วเราจะเริ่มชงให้เลย</p><label class="field-label" for="customer-name">ชื่อสำหรับรับออเดอร์</label><input class="name-input" id="customer-name" name="customerName" autocomplete="name" maxlength="60" required placeholder="ชื่อของคุณ"><div class="dialog-total"><span>ยอดชำระที่ร้าน</span><strong id="dialog-total">฿0</strong></div><button class="confirm-button" type="submit">ส่งออเดอร์ให้ร้าน <span aria-hidden="true">↗</span></button><p class="dialog-caption">ออเดอร์นี้เป็นตัวอย่าง ยังไม่ได้ส่งเข้าระบบร้านจริง</p></form></dialog>
+    <dialog class="confirmation-dialog" id="confirmation-dialog" aria-labelledby="confirmation-title"><div class="confirmation-content"><span class="confirmation-mark" aria-hidden="true">✳</span><p class="eyebrow">FRESHLY MADE FOR YOU</p><h2 id="confirmation-title">รับออเดอร์แล้ว</h2><p id="confirmation-copy"></p><div class="receipt-number" id="receipt-number"></div><button class="confirm-button" id="confirmation-close" type="button">กลับไปเลือกเมนู <span aria-hidden="true">↗</span></button><small>ตัวอย่างการสั่งซื้อ · ไม่มีการชำระเงินจริง</small></div></dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

@@ -1,19 +1,15 @@
-# Daymark
+# Baan Malak Cafe
 
-A private to-do list with individual accounts and SQLite-backed storage.
+A responsive cafe menu and pickup-ordering app. Menu filtering, cart totals, and sample order confirmation run entirely in the browser; no database or environment secrets are needed.
 
 ## Run locally
 
-Requires Node.js 20 or newer. Install dependencies with `npm install`, copy `.env.example` to `.env`, set a unique `SESSION_SECRET`, then run `npm start`. Open [http://localhost:3000](http://localhost:3000). The app creates its database under `data/` on first run. For local development with automatic restarts, run `npm run dev`.
+Requires Node.js 22 or newer. Run `npm start` and open [http://localhost:3000](http://localhost:3000). Cart contents are saved in the browser's local storage.
 
 ## Tests
 
-Run `npm test`. The tests use temporary SQLite databases and cover registration validation, successful and failed login, authenticated task creation/completion/deletion, and cross-account isolation.
+Run `npm test` to exercise menu search/filtering and cart quantity/total calculations.
 
 ## Deploy to Vercel
 
-Vercel Functions cannot keep a local SQLite file reliably. Create a Turso database and auth token, then add `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, and a long random `SESSION_SECRET` to the Vercel project environment variables for Production (and Preview if needed). Push or redeploy after setting them. The app creates its tables on first request. Without Turso variables, the Vercel function returns a configuration error rather than attempting to write to its read-only deployment filesystem.
-
-## Security notes
-
-Passwords are hashed with bcrypt. Session records and application data are stored in SQLite, and the session cookie is HTTP-only and same-site. Set a long random `SESSION_SECRET` and serve behind HTTPS in production; production mode enables secure cookies. Usernames are case-insensitive and limited to letters, numbers, and underscores.
+Import this repository with the project root as the Root Directory. Vercel serves the root `index.html`, `styles.css`, and `app.js` as a static site. No database, environment variables, or Vercel Functions are required. Confirmed orders are a front-end demo only; connect an order API or POS before using this app to receive real orders.
