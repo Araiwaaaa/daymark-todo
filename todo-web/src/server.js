@@ -9,6 +9,8 @@ const { SQLiteSessionStore } = require('./session-store');
 const { createAuthRouter } = require('./routes/auth');
 const { createTasksRouter } = require('./routes/tasks');
 
+if (process.env.VERCEL) process.env.TODO_DB_PATH ||= '/tmp/todo.sqlite';
+
 function createApp(options = {}) {
   const db = options.db || createDatabase(options.dbPath);
   const app = express();
