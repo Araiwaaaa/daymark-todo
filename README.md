@@ -4,7 +4,7 @@ A responsive cafe menu and pickup-ordering app. Menu filtering, cart totals, and
 
 ## Run locally
 
-Requires Node.js 22 or newer. Run `npm start` and open [http://localhost:3000](http://localhost:3000). Cart contents are saved in the browser's local storage.
+Run `python3 -m http.server 3000` and open [http://localhost:3000](http://localhost:3000). Cart contents are saved in the browser's local storage. Run `npm test` to test menu filtering and cart calculations.
 
 ## Tests
 
