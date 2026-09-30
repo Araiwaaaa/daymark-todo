@@ -1,0 +1,18 @@
+{
+  "name": "todo-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A private, SQLite-backed task list",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.2.0",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2"
+  },
+  "devDependencies": {
+    "supertest": "^7.1.4"
+  }
+}

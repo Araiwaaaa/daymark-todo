@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f4ef">
+    <title>Daymark | Your task list</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <section class="auth-screen" id="auth-screen" aria-labelledby="auth-title" hidden>
+        <div class="auth-art" aria-hidden="true">
+          <div class="brand-mark">d<span>.</span></div>
+          <div class="art-copy">
+            <p class="eyebrow">A little more in focus</p>
+            <p class="art-headline">Make space<br>for what matters.</p>
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="art-spark">✳</div>
+          </div>
+          <p class="art-foot">Your day, in good order.</p>
+        </div>
+        <div class="auth-panel">
+          <div class="auth-form-wrap">
+            <p class="eyebrow" id="auth-eyebrow">WELCOME BACK</p>
+            <h1 id="auth-title">Good to see you.</h1>
+            <p class="auth-subtitle" id="auth-subtitle">Sign in to pick up where you left off.</p>
+            <div class="auth-tabs" role="tablist" aria-label="Account access">
+              <button class="auth-tab is-active" id="login-tab" type="button" role="tab" aria-selected="true">Sign in</button>
+              <button class="auth-tab" id="register-tab" type="button" role="tab" aria-selected="false">Create account</button>
+            </div>
+            <form id="auth-form">
+              <label for="username">Username</label>
+              <input id="username" name="username" type="text" autocomplete="username" minlength="3" maxlength="32" required>
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password" autocomplete="current-password" minlength="8" maxlength="128" required>
+              <p class="form-error" id="auth-error" role="alert" hidden></p>
+              <button class="button button-primary auth-submit" id="auth-submit" type="submit">Sign in <span aria-hidden="true">→</span></button>
+            </form>
+            <p class="auth-hint" id="auth-hint">Your task list is private to your account.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace" id="workspace" aria-labelledby="list-title" hidden>
+        <header class="topbar">
+          <a class="wordmark" href="/" aria-label="Daymark home">daymark<span>.</span></a>
+          <div class="account-menu">
+            <span class="avatar" id="avatar" aria-hidden="true">D</span>
+            <span class="account-name" id="account-name"></span>
+            <button class="text-button" id="logout-button" type="button">Sign out</button>
+          </div>
+        </header>
+        <div class="workspace-content">
+          <div class="list-heading">
+            <div>
+              <p class="eyebrow" id="today-label"></p>
+              <h1 id="list-title">Your list<span class="heading-period">.</span></h1>
+            </div>
+            <p class="task-count" id="task-count"></p>
+          </div>
+
+          <form class="add-task" id="task-form">
+            <label class="visually-hidden" for="task-title">Add a task</label>
+            <input id="task-title" name="title" type="text" maxlength="200" placeholder="What needs doing?" autocomplete="off" required>
+            <button class="button button-primary" type="submit"><span aria-hidden="true">+</span> Add task</button>
+          </form>
+          <p class="form-error task-error" id="task-error" role="alert" hidden></p>
+
+          <div class="list-toolbar">
+            <div class="filter-tabs" role="group" aria-label="Filter tasks">
+              <button class="filter-tab is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+              <button class="filter-tab" type="button" data-filter="active" aria-pressed="false">To do</button>
+              <button class="filter-tab" type="button" data-filter="completed" aria-pressed="false">Done</button>
+            </div>
+            <span class="list-label">YOUR TASKS</span>
+          </div>
+
+          <ul class="task-list" id="task-list" aria-live="polite"></ul>
+        </div>
+        <footer class="workspace-footer"><span>daymark<span class="footer-period">.</span></span><span>One thing at a time.</span></footer>
+      </section>
+    </main>
+  </body>
+</html>
